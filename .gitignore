@@ -1,0 +1,12 @@
+# Virtual environment
+venv/
+
+# Python bytecode files
+__pycache__/
+*.pyc
+
+# SQLite database file
+routers.db
+
+# Environment variables
+.env
