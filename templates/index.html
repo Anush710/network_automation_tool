@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Network Automation Tool</title>
+  <style>
+    body { font-family: Arial; margin: 40px; }
+    input, textarea, button { padding: 10px; margin-top: 10px; width: 100%; }
+    #output { white-space: pre-line; background: #f0f0f0; padding: 10px; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>Send Command to Router</h1>
+  <form method="POST" action="/run">
+    <label>Router IP:</label>
+    <input type="text" name="ip" placeholder="e.g., 192.168.130.69" required>
+
+    <label>Command:</label>
+    <input type="text" name="command" placeholder="e.g., show ip interface brief" required>
+
+    <button type="submit">Run</button>
+  </form>
+
+  {% if output %}
+    <div id="output">
+      <h3>Output:</h3>
+      <pre>{{ output }}</pre>
+    </div>
+  {% endif %}
+</body>
+</html>
