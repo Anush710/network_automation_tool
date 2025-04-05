@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NetAuto Monitor - Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background-color: #f8f9fa; }
+    .status-online { color: green; font-weight: bold; }
+    .status-offline { color: red; font-weight: bold; }
+    .status-error { color: orange; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">NetAuto Monitor</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Command</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/dashboard">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="/monitoring">Monitoring</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Dashboard Content -->
+  <div class="container mt-4">
+    <h2>Router Monitoring Dashboard</h2>
+    <table class="table table-striped table-hover mt-3">
+      <thead class="table-dark">
+        <tr>
+          <th>Router Name</th>
+          <th>IP Address</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for router in routers %}
+        <tr>
+          <td>{{ router.name }}</td>
+          <td>{{ router.ip }}</td>
+          <td>
+            {% if router.status == "Online" %}
+              <span class="status-online">{{ router.status }}</span>
+            {% elif router.status == "Offline" %}
+              <span class="status-offline">{{ router.status }}</span>
+            {% else %}
+              <span class="status-error">{{ router.status }}</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
